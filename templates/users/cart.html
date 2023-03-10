@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="container my-4">
+    <div class="row">
+      <div class="col-4">
+        <h1>Cart</h1>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Amount</th>
+            <th scope="col">Total Price</th>
+            <th scope="col"></th>
+          </tr>
+          </thead>
+          <tbody>
+          {% for item in cart_items %}
+            <form action="{{ url_for('cart.edit_item', cart_id=cart.id, item_id=item.id) }}" method="post">
+              {{ form.csrf_token() }}
+
+              <tr>
+                <th scope="row">{{ item.id }}</th>
+                <td>{{ item.product.name }}</td>
+                <td>{{ item.product.price }}</td>
+                <td>
+                  <input type="number" name="amount" min="1" value="{{ item.amount }}">
+                </td>
+                <td>{{ item.get_total_price() }}</td>
+                <td>
+                  <button type="submit" class="btn btn-primary">Save</button>
+                  <a href="{{ url_for('cart.delete_item', cart_id=cart.id, item_id=item.id) }}" type="button" class="btn btn-danger">Delete</a>
+                </td>
+              </tr>
+
+            </form>
+          {% endfor %}
+            <tr>
+              <th scope="row"></th>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>{{ cart.get_total_price() }}</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-2 mx-auto">
+        <a href="{{ url_for('cart.finish', cart_id=cart.id) }}" class="btn btn-primary d-block">
+          Make Order
+        </a>
+      </div>
+    </div>
+  </div>
+{% endblock %}

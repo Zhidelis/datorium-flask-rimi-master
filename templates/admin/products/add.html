@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="container">
+    <div class="row my-5">
+      <div class="col-lg-6 mx-auto">
+
+        <!-- Form -->
+        <form enctype="multipart/form-data" method="post" action="{{ url_for('admin.products_add') }}">
+          {{ form.csrf_token }}
+
+          <div class="form-group">
+            <label for="nameField">Name</label>
+            <input type="text" name="name" class="form-control" id="nameField" placeholder="Enter name" required>
+          </div>
+
+          <div class="form-group">
+            <label for="priceField">Price</label>
+            <input type="text" name="price" class="form-control" id="priceField" placeholder="Enter price" required>
+          </div>
+
+          <div class="form-group">
+            <label for="descriptionField">Description</label>
+            <textarea name="description" id="descriptionField" class="form-control" cols="30" rows="10" placeholder="Enter description" required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="imageField">Image</label>
+            <input type="file" name="image" class="form-control" id="imageField" placeholder="Upload image" required>
+          </div>
+
+          <div class="form-group">
+            <label for="stockField">Stock</label>
+            <input type="number" min="0" name="stock" class="form-control" id="stockField" placeholder="Enter stock" required>
+          </div>
+
+          <div class="form-group">
+            <label for="hiddenField">Hidden</label>
+            <input type="checkbox" name="hidden" class="form-control" id="hiddenField">
+          </div>
+
+          <button type="submit" class="btn btn-primary">Add</button>
+        </form>
+
+      </div>
+    </div>
+  </div>
+{% endblock %}

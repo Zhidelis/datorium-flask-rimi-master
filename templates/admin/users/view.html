@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <div class="col-6">
+        <h1>{{ user.name }}</h1>
+
+        <p>Name: {{ user.name }}</p>
+        <p>Email: {{ user.email }}</p>
+        <p>Is Admin: {{ user.is_admin }}</p>
+        <p>Created at: {{ user.created_at }}</p>
+        <p>Updated at: {{ user.updated_at }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- User Orders -->
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-12">
+        Table with all user orders
+      </div>
+    </div>
+  </div>
+{% endblock %}

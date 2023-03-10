@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+
+  <title>RIMI Shop</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Navigation -->
+  {% include "navigation.html" %}
+
+  <!-- Page Content -->
+  <div class="container">
+    <div class="row">
+
+      <!-- Alerts -->
+      {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="col-6 mt-4 mx-auto">
+
+          {% for category, message in messages %}
+          <div class="alert alert-{{ category }}">
+            {{ message }}
+          </div>
+          {% endfor %}
+
+        </div>
+      {% endif %}
+      {% endwith %}
+
+      <!-- Form Errors -->
+      {% if form and form.errors %}
+        <div class="col-6 mt-4 mx-auto">
+          <div class="alert alert-danger">
+            {% for field, errors in form.errors.items() %}
+              <p>{{ form[field].label }}: {{ ', '.join(errors) }}</p>
+            {% endfor %}
+          </div>
+        </div>
+      {% endif %}
+
+      <!-- Content -->
+      {% block content %}
+      {% endblock %}
+
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+  <!-- JS -->
+  <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+
+</body>
+</html>

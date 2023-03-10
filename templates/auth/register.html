@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="container">
+    <div class="row my-5">
+      <div class="col-lg-6 mx-auto">
+
+        <!-- Form -->
+        <form method="post" action="{{ url_for('auth.register') }}">
+          {{ form.csrf_token }}
+
+          <div class="form-group">
+            <label for="nameField">Name</label>
+            <input type="text" name="name" class="form-control" id="nameField" placeholder="Enter name" required>
+          </div>
+
+          <div class="form-group">
+            <label for="emailField">Email address</label>
+            <input type="email" name="email" class="form-control" id="emailField" placeholder="Enter email" required>
+          </div>
+
+          <div class="form-group">
+            <label for="passwordField">Password</label>
+            <input type="password" name="password" class="form-control" id="passwordField" placeholder="Password" required>
+          </div>
+
+          <div class="form-group">
+            <label for="confirmPasswordField">Confirm Password</label>
+            <input type="password" name="confirm_password" class="form-control" id="confirmPasswordField" placeholder="Confirm password" required>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Register</button>
+        </form>
+
+      </div>
+    </div>
+  </div>
+{% endblock %}
